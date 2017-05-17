@@ -1,1 +1,199 @@
-Hello World
+<!DOCTYPE html>
+<!-- By: DJ ISO -->
+<html>
+<head>
+
+<!-- Style for the webpage -->
+<style type="text/css">
+body
+{
+	font-family: "Bebas Neue", Arial;
+	background-color: #a0beef;
+}
+
+h1
+{
+	color: white;
+	font-size: 50px;
+	letter-spacing: 1.7px;
+}
+
+.button
+{
+	background-color: #FFFFFF;
+	color: #356dc6;
+	padding: 10px 20px;
+	border-radius: 10px;	
+	border: 2px solid #356dc6;
+	text-align: center;
+	display: inline-block;
+    margin: 4px 2px;
+	cursor:pointer;
+}
+
+.button:hover
+{
+	background-color: #356dc6;
+	border: 2px solid #356dc6;
+	color: white;
+}
+
+.tacoparty
+{
+	width: 30px;
+	height: auto;
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+}
+
+</style>
+</head>
+
+<!-- Body of webpage -->
+<body>
+<center>
+<h1 class="EXTitle">IIDX EXScore Calculator</h1>
+<!-- Makes the text inputs into a table layout -->
+<table class="layout">
+	<tr>
+		<td>PGreats:</td>
+		<td colspan="2">
+			<form action="#">
+			<input type="text" id="PGreat" name="PGreat" required="required" autofocus="autofocus" placeholder="Example: 1750" onkeypress="handle(event)">
+		</td>
+	</tr>
+	<tr>
+		<td>Greats:</td>
+		<td colspan="2">
+			<input type="text" id="Great" name="Great" required="required" placeholder="Example: 83" onkeypress="handle(event)">
+			</form>
+		</td>
+	</tr>
+	<tr>
+		<td>Notes:</td>
+		<td colspan="2">
+			<input type="text" id="Notes" name="Notes" required="required" placeholder="Example: 1833" onkeypress="handle(event)">
+			</form>
+		</td>
+	</tr>
+</table>
+<br>
+<!-- Button for completing action of calculation -->
+<div class="button" onclick="displayCalc();displayPercent();">Calculate!</div>
+
+<!-- Paragraph text for output -->
+<p id="theEX">Your EXScore is: </p>
+<p id="yourPcent">Your Percentage is: </p>
+<p id="Grade">Your Grade is: </p>
+
+
+<script>
+//Displays user's EXScore
+function displayCalc()
+{
+	var PGreat = parseInt(document.getElementById("PGreat").value);
+	var Great = parseInt(document.getElementById("Great").value);
+		
+	var yourEX = getEX(PGreat, Great);
+		
+	document.getElementById("theEX").innerHTML = "Your EXScore is: " + yourEX;
+}
+
+//Calculates user's EXScore
+function getEX(value1, value2)
+{
+	return (value1*2) + value2;
+}
+
+//Calculates user's Percent in the song
+function getPercent(ex1, note1)
+{
+	return ((ex1/(note1*2))*100).toFixed(2); //Rounds to 2 decimal places
+}
+
+//Displays the user's Percent
+function displayPercent()
+{
+	var PGreat = parseInt(document.getElementById("PGreat").value);
+	var Great = parseInt(document.getElementById("Great").value);
+	var Notes = parseInt(document.getElementById("Notes").value);	
+
+	var yourEX = getEX(PGreat, Great);
+	
+	var Pcent = getPercent(yourEX, Notes);
+
+	document.getElementById("yourPcent").innerHTML = "Your Percentage is: " + Pcent + "%";	
+}
+
+//Gets user's DJ Grade
+function getGrade(percent)
+{
+	if(percent >= 88.89)
+	{
+		return "AAA";
+	}
+	else if(percent >= 77.78)
+	{
+		return "AA";
+	}
+	else if(percent >= 66.67)
+	{
+		return "A";
+	}
+	else if(percent >= 55.56)
+	{
+		return "B";
+	}
+	else if(percent >= 44.45)
+	{
+		return "C";
+	}
+	else if(percent >= 33.34)
+	{
+		return "D";
+	}
+	else if(percent >= 22.23)
+	{
+		return "E";
+	}
+	else
+	{
+		return "F";
+	}
+}
+
+//Displays user's DJ Grade
+function displayGrade()
+{
+	var PGreat = parseInt(document.getElementById("PGreat").value);
+	var Great = parseInt(document.getElementById("Great").value);
+	var Notes = parseInt(document.getElementById("Notes").value);	
+
+	var yourEX = getEX(PGreat, Great);
+	
+	var Pcent = getPercent(yourEX, Notes);
+
+	var grade = getGrade(Pcent);
+
+	document.getElementById("Grade").innerHTML = "Your Grade is: " + grade;
+}
+
+//Handles if the enter key is pressed in a text input
+function handle(e)
+{
+	if(e.keyCode === 13)
+	{
+    	e.preventDefault(); // Ensure it is only this code that runs
+
+        //alert("Enter was pressed");
+		displayCalc();
+		displayPercent();
+		displayGrade();
+    }
+}
+</script>
+</center>
+<img class="tacoparty" src="http://i.imgur.com/WJGR7Tw.gif">
+</body>
+<html>
