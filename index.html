@@ -55,11 +55,11 @@ h1
 <center>
 <h1 class="EXTitle">IIDX EXScore Calculator</h1>
 <!-- Makes the text inputs into a table layout -->
+<form name="CalcForm" action="#" onsubmit="return validateForm()" method="post">
 <table class="layout">
 	<tr>
 		<td>PGreats:</td>
 		<td colspan="2">
-			<form action="#">
 			<input type="text" id="PGreat" name="PGreat" required="required" autofocus="autofocus" placeholder="Example: 1750" onkeypress="handle(event)">
 		</td>
 	</tr>
@@ -67,28 +67,81 @@ h1
 		<td>Greats:</td>
 		<td colspan="2">
 			<input type="text" id="Great" name="Great" required="required" placeholder="Example: 83" onkeypress="handle(event)">
-			</form>
 		</td>
 	</tr>
 	<tr>
 		<td>Notes:</td>
 		<td colspan="2">
 			<input type="text" id="Notes" name="Notes" required="required" placeholder="Example: 1833" onkeypress="handle(event)">
-			</form>
 		</td>
 	</tr>
 </table>
+</form>
 <br>
 <!-- Button for completing action of calculation -->
-<div class="button" onclick="displayCalc();displayPercent();displayGrade();">Calculate!</div>
+<div class="button" onclick="clickhandle()">Calculate!</div>
 
 <!-- Paragraph text for output -->
 <p id="theEX">Your EXScore is: </p>
 <p id="yourPcent">Your Percentage is: </p>
 <p id="Grade">Your Grade is: </p>
 
-
 <script>
+//Form validation
+function validateForm()
+{
+    var pG = document.forms["CalcForm"]["PGreat"].value;
+	if(pG == null || pG == "")
+	{
+		alert("Please fill out PGreats");
+		return false;
+	}
+	else if(pG < 0)
+	{
+		alert("Please fill out a positive number for PGreats");
+		return false
+	}
+	else if(isNaN(pG))
+	{
+		alert("PGreats value is not a number");
+		return false;
+	}
+
+	var G = document.forms["CalcForm"]["Great"].value;
+	if(G == null || G == "")
+	{
+		alert("Please fill out Greats");
+		return false;
+	}
+	else if(G < 0)
+	{
+		alert("Please fill out a positive number for Greats");
+		return false
+	}
+	else if(isNaN(G))
+	{
+		alert("Greats value is not a number");
+		return false;
+	}
+
+	var Note = document.forms["CalcForm"]["Notes"].value;
+	if(Note == null || Note == "")
+	{
+		alert("Please fill out Notes");
+		return false;
+	}
+	else if(Note < 0)
+	{
+		alert("Please fill out a positive number for Notes");
+		return false
+	}
+	else if(isNaN(Note))
+	{
+		alert("Notes value is not a number");
+		return false;
+	}
+}
+
 //Displays user's EXScore
 function displayCalc()
 {
@@ -187,10 +240,25 @@ function handle(e)
     	e.preventDefault(); // Ensure it is only this code that runs
 
         //alert("Enter was pressed");
+		validateForm();
+		if(validateForm() == true)
+		{
+			displayCalc();
+			displayPercent();
+			displayGrade();
+		}
+    }
+}
+
+function clickhandle()
+{
+	validateForm();
+	if(validateForm() == true)
+	{
 		displayCalc();
 		displayPercent();
 		displayGrade();
-    }
+	}
 }
 </script>
 </center>
