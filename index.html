@@ -11,11 +11,41 @@ body
 	background-color: #a0beef;
 }
 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
 h1
 {
 	color: white;
 	font-size: 50px;
 	letter-spacing: 1.7px;
+	position: relative;
+	padding: 20px;
 }
 
 .button
@@ -52,10 +82,18 @@ h1
 
 <!-- Body of webpage -->
 <body>
+
+<ul>
+  <li><a class="active" href="#home">Home</a></li>
+  <li><a href="#projects">Projects</a></li>
+  <li><a href="#contact">Contact</a></li>
+  <li><a href="#about">About</a></li>
+</ul>
+
 <center>
 <h1 class="EXTitle">IIDX EXScore Calculator</h1>
 <!-- Makes the text inputs into a table layout -->
-<form name="CalcForm" action="#" onsubmit="return validateForm()" method="post">
+<form name="CalcForm" action="#" method="post">
 <table class="layout">
 	<tr>
 		<td>PGreats:</td>
@@ -240,7 +278,6 @@ function handle(e)
     	e.preventDefault(); // Ensure it is only this code that runs
 
         //alert("Enter was pressed");
-		validateForm();
 		if(validateForm() == true)
 		{
 			displayCalc();
@@ -252,7 +289,6 @@ function handle(e)
 
 function clickhandle()
 {
-	validateForm();
 	if(validateForm() == true)
 	{
 		displayCalc();
