@@ -130,7 +130,13 @@ h1
 //Form validation
 function validateForm()
 {
-    var pG = document.forms["CalcForm"]["PGreat"].value;
+    var pG = parseInt(document.forms["CalcForm"]["PGreat"].value);
+	var G = parseInt(document.forms["CalcForm"]["Great"].value);
+	var Note = parseInt(document.forms["CalcForm"]["Notes"].value);
+	
+	var CalcEX = getEX(pG, G);
+	var MAX = parseInt((Note*2));
+	
 	if(pG == null || pG == "")
 	{
 		alert("Please fill out PGreats");
@@ -146,8 +152,6 @@ function validateForm()
 		alert("PGreats value is not a number");
 		return false;
 	}
-
-	var G = document.forms["CalcForm"]["Great"].value;
 	if(G == null || G == "")
 	{
 		alert("Please fill out Greats");
@@ -163,8 +167,6 @@ function validateForm()
 		alert("Greats value is not a number");
 		return false;
 	}
-
-	var Note = document.forms["CalcForm"]["Notes"].value;
 	if(Note == null || Note == "")
 	{
 		alert("Please fill out Notes");
@@ -178,6 +180,11 @@ function validateForm()
 	else if(isNaN(Note))
 	{
 		alert("Notes value is not a number");
+		return false;
+	}
+	else if(CalcEX > MAX)
+	{
+		alert("Calculated EXScore too high, please edit the values in the PGreat or Great input.");
 		return false;
 	}
 	else
@@ -284,7 +291,7 @@ function handle(e)
     	e.preventDefault(); // Ensure it is only this code that runs
 
         //alert("Enter was pressed");
-		if(validateForm() == true)
+		if(validateForm() === true)
 		{
 			displayCalc();
 			displayPercent();
@@ -295,7 +302,7 @@ function handle(e)
 
 function clickhandle()
 {
-	if(validateForm() == true)
+	if(validateForm() === true)
 	{
 		displayCalc();
 		displayPercent();
