@@ -4,312 +4,54 @@
 <head>
 
 <!-- Style for the webpage -->
-<style type="text/css">
-body
-{
-	font-family: "Bebas Neue", Arial;
-	background-color: #a0beef;
-}
+<link rel="stylesheet" href="exstyle.css">
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-}
-
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover {
-    background-color: #111;
-}
-
-h1
-{
-	color: white;
-	font-size: 50px;
-	letter-spacing: 1.7px;
-	position: relative;
-	padding: 20px;
-}
-
-.button
-{
-	background-color: #FFFFFF;
-	color: #356dc6;
-	padding: 10px 20px;
-	border-radius: 10px;	
-	border: 2px solid #356dc6;
-	text-align: center;
-	display: inline-block;
-    margin: 4px 2px;
-	cursor:pointer;
-}
-
-.button:hover
-{
-	background-color: #356dc6;
-	border: 2px solid #356dc6;
-	color: white;
-}
-
-.tacoparty
-{
-	width: 30px;
-	height: auto;
-	position: absolute;
-	right: 0px;
-	bottom: 0px;
-}
-
-</style>
 </head>
-
 <!-- Body of webpage -->
 <body>
-
 <!-- Menu bar thing
 <ul>
-  <li><a class="active" href="#home">Home</a></li>
-  <li><a href="#projects">Projects</a></li>
-  <li><a href="#contact">Contact</a></li>
-  <li><a href="#about">About</a></li>
+<li><a class="active" href="#home">Home</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+<li><a href="#about">About</a></li>
 </ul>
 -->
-
 <center>
-<h1 class="EXTitle">IIDX EXScore Calculator</h1>
-<!-- Makes the text inputs into a table layout -->
-<form name="CalcForm" action="#" method="post">
-<table class="layout">
-	<tr>
-		<td>PGreats:</td>
-		<td colspan="2">
-			<input type="text" id="PGreat" name="PGreat" required="required" autofocus="autofocus" placeholder="Example: 1750" onkeypress="handle(event)">
-		</td>
-	</tr>
-	<tr>
-		<td>Greats:</td>
-		<td colspan="2">
-			<input type="text" id="Great" name="Great" required="required" placeholder="Example: 83" onkeypress="handle(event)">
-		</td>
-	</tr>
-	<tr>
-		<td>Notes:</td>
-		<td colspan="2">
-			<input type="text" id="Notes" name="Notes" required="required" placeholder="Example: 1833" onkeypress="handle(event)">
-		</td>
-	</tr>
-</table>
-</form>
+    <h1 class="EXTitle">IIDX EXScore Calculator</h1>
+    <!-- Makes the text inputs into a table layout -->
+    <form name="CalcForm" action="#" method="post">
+        <table class="layout">
+            <tr>
+                <td>PGreats:</td>
+                <td colspan="2">
+                    <input type="number" id="PGreat" name="PGreat" required="required" autofocus="autofocus" placeholder="Example: 1750" onkeypress="handle(event)">
+                </td>
+            </tr>
+            <tr>
+                <td>Greats:</td>
+                <td colspan="2">
+                    <input type="number" id="Great" name="Great" required="required" placeholder="Example: 83" onkeypress="handle(event)">
+                </td>
+            </tr>
+            <tr>
+                <td>Notes:</td>
+                <td colspan="2">
+                    <input type="number" id="Notes" name="Notes" required="required" placeholder="Example: 1833" onkeypress="handle(event)">
+                </td>
+            </tr>
+        </table>
+    </form>
 <br>
-<!-- Button for completing action of calculation -->
-<div class="button" onclick="clickhandle()">Calculate!</div>
+    <!-- Button for completing action of calculation -->
+    <div class="button" onclick="clickhandle()">Calculate!</div>
 
-<!-- Paragraph text for output -->
-<p id="theEX">Your EXScore is: </p>
-<p id="yourPcent">Your Percentage is: </p>
-<p id="Grade">Your Grade is: </p>
+    <!-- Paragraph text for output -->
+    <p id="theEX">Your EXScore is: </p>
+    <p id="yourPcent">Your Percentage is: </p>
+    <p id="Grade">Your Grade is: </p>
 
-<script>
-//Form validation
-function validateForm()
-{
-    var pG = parseInt(document.forms["CalcForm"]["PGreat"].value);
-	var G = parseInt(document.forms["CalcForm"]["Great"].value);
-	var Note = parseInt(document.forms["CalcForm"]["Notes"].value);
-	
-	var CalcEX = getEX(pG, G);
-	var MAX = parseInt((Note*2));
-	
-	if(pG == null || pG == "")
-	{
-		alert("Please fill out PGreats");
-		return false;
-	}
-	else if(pG < 0)
-	{
-		alert("Please fill out a positive number for PGreats");
-		return false
-	}
-	else if(isNaN(pG))
-	{
-		alert("PGreats value is not a number");
-		return false;
-	}
-	if(G == null || G == "")
-	{
-		alert("Please fill out Greats");
-		return false;
-	}
-	else if(G < 0)
-	{
-		alert("Please fill out a positive number for Greats");
-		return false
-	}
-	else if(isNaN(G))
-	{
-		alert("Greats value is not a number");
-		return false;
-	}
-	if(Note == null || Note == "")
-	{
-		alert("Please fill out Notes");
-		return false;
-	}
-	else if(Note < 0)
-	{
-		alert("Please fill out a positive number for Notes");
-		return false
-	}
-	else if(isNaN(Note))
-	{
-		alert("Notes value is not a number");
-		return false;
-	}
-	else if(CalcEX > MAX)
-	{
-		alert("Calculated EXScore too high, please edit the values in the PGreat or Great input.");
-		return false;
-	}
-	else
-	{
-		return true;
-	}
-}
-
-//Displays user's EXScore
-function displayCalc()
-{
-	var PGreat = parseInt(document.getElementById("PGreat").value);
-	var Great = parseInt(document.getElementById("Great").value);
-		
-	var yourEX = getEX(PGreat, Great);
-		
-	document.getElementById("theEX").innerHTML = "Your EXScore is: " + yourEX;
-}
-
-//Calculates user's EXScore
-function getEX(value1, value2)
-{
-	return (value1*2) + value2;
-}
-
-//Calculates user's Percent in the song
-function getPercent(ex1, note1)
-{
-	return ((ex1/(note1*2))*100).toFixed(2); //Rounds to 2 decimal places
-}
-
-//Displays the user's Percent
-function displayPercent()
-{
-	var PGreat = parseInt(document.getElementById("PGreat").value);
-	var Great = parseInt(document.getElementById("Great").value);
-	var Notes = parseInt(document.getElementById("Notes").value);	
-
-	var yourEX = getEX(PGreat, Great);
-	
-	var Pcent = getPercent(yourEX, Notes);
-
-	document.getElementById("yourPcent").innerHTML = "Your Percentage is: " + Pcent + "%";	
-}
-
-//Gets user's DJ Grade
-function getGrade(percent)
-{
-	if(percent >= 88.89)
-	{
-		return "AAA";
-	}
-	else if(percent >= 77.78)
-	{
-		return "AA";
-	}
-	else if(percent >= 66.67)
-	{
-		return "A";
-	}
-	else if(percent >= 55.56)
-	{
-		return "B";
-	}
-	else if(percent >= 44.45)
-	{
-		return "C";
-	}
-	else if(percent >= 33.34)
-	{
-		return "D";
-	}
-	else if(percent >= 22.23)
-	{
-		return "E";
-	}
-	else
-	{
-		return "F";
-	}
-}
-
-//Displays user's DJ Grade
-function displayGrade()
-{
-	var PGreat = parseInt(document.getElementById("PGreat").value);
-	var Great = parseInt(document.getElementById("Great").value);
-	var Notes = parseInt(document.getElementById("Notes").value);	
-
-	var yourEX = getEX(PGreat, Great);
-	
-	var Pcent = getPercent(yourEX, Notes);
-
-	var grade = getGrade(Pcent);
-
-	document.getElementById("Grade").innerHTML = "Your Grade is: " + grade;
-}
-
-//Handles if the enter key is pressed in a text input
-function handle(e)
-{
-	if(e.keyCode === 13)
-	{
-    	e.preventDefault(); // Ensure it is only this code that runs
-
-        //alert("Enter was pressed");
-		if(validateForm() === true)
-		{
-			displayCalc();
-			displayPercent();
-			displayGrade();
-		}
-    }
-}
-
-function clickhandle()
-{
-	if(validateForm() === true)
-	{
-		displayCalc();
-		displayPercent();
-		displayGrade();
-	}
-}
-</script>
+<script src="excalc.js"></script>
 </center>
 <img class="tacoparty" src="http://i.imgur.com/WJGR7Tw.gif">
 </body>

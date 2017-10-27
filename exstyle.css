@@ -1,0 +1,70 @@
+body {
+font-family: "Bebas Neue", Arial;
+background-color: #a0beef;
+}
+
+ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: #333;
+position: fixed;
+left: 0;
+top: 0;
+width: 100%;
+}
+
+li {
+float: left;
+}
+
+li a {
+display: block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+li a:hover {
+background-color: #111;
+}
+
+h1
+{
+color: white;
+font-size: 50px;
+letter-spacing: 1.7px;
+position: relative;
+padding: 20px;
+}
+
+.button
+{
+background-color: #FFFFFF;
+color: #356dc6;
+padding: 10px 20px;
+border-radius: 10px;
+border: 2px solid #356dc6;
+text-align: center;
+display: inline-block;
+margin: 4px 2px;
+cursor:pointer;
+}
+
+.button:hover
+{
+background-color: #356dc6;
+border: 2px solid #356dc6;
+color: white;
+}
+
+.tacoparty
+{
+width: 30px;
+height: auto;
+position: absolute;
+right: 0px;
+bottom: 0px;
+}
