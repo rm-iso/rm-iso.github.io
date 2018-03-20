@@ -51,7 +51,8 @@ function validateForm()
         alert("Notes value is not a number");
         return false;
     }
-    else if(CalcEX > MAX)
+
+    if(CalcEX > MAX)
     {
         alert("Calculated EXScore too high, please edit the values in the PGreat or Great input.");
         return false;
