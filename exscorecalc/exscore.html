@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<!-- By: DJ ISO -->
+<html>
+<head>
+    <title>EXScore Calculator</title>
+<!-- Style for the webpage -->
+    <link rel="stylesheet" href="exstyle.css">
+
+</head>
+<!-- Body of webpage -->
+<body>
+<!-- Menu bar thing
+<ul>
+<li><a class="active" href="#home">Home</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+<li><a href="#about">About</a></li>
+</ul>
+-->
+<center>
+    <h1 class="EXTitle">IIDX EXScore Calculator</h1>
+    <!-- Makes the text inputs into a table layout -->
+    <form name="CalcForm" action="#" method="post">
+        <table class="layout">
+            <tr>
+                <td>PGreats:</td>
+                <td colspan="2">
+                    <input type="number" id="PGreat" name="PGreat" required="required" autofocus="autofocus" placeholder="Example: 1750" onkeypress="handle(event)">
+                </td>
+            </tr>
+            <tr>
+                <td>Greats:</td>
+                <td colspan="2">
+                    <input type="number" id="Great" name="Great" required="required" placeholder="Example: 83" onkeypress="handle(event)">
+                </td>
+            </tr>
+            <tr>
+                <td>Notes:</td>
+                <td colspan="2">
+                    <input type="number" id="Notes" name="Notes" required="required" placeholder="Example: 1833" onkeypress="handle(event)">
+                </td>
+            </tr>
+        </table>
+    </form>
+<br>
+    <!-- Button for completing action of calculation -->
+    <div class="button" onclick="clickhandle()">Calculate!</div>
+
+    <!-- Paragraph text for output -->
+    <p id="theEX">Your EXScore is: </p>
+    <p id="yourPcent">Your Percentage is: </p>
+    <p id="Grade">Your Grade is: </p>
+
+<script src="excalc.js"></script>
+</center>
+<img class="tacoparty" src="http://i.imgur.com/WJGR7Tw.gif">
+</body>
+<html>
